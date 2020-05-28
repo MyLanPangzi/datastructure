@@ -19,9 +19,7 @@ public class CircleSingleList {
         for (int i = 1; i <= size; i++) {
             Boy boy = new Boy(i);
             if (result.first == null) {
-                result.first = boy;
-                boy.next = boy;
-                cur = boy;
+                result.first = boy.next = cur = boy;
             } else {
                 //noinspection ConstantConditions
                 cur.next = boy;
