@@ -1,35 +1,36 @@
-package com.hiscat.ds;
+package com.hiscat.ds.queue;
 
 /**
  * @author hiscat
  */
-public class ArrayQueue {
+public class CircleQueue {
     private int head;
     private int tail;
     private int maxSize;
     private int[] elements;
     private int size;
 
-    public ArrayQueue(int maxSize) {
+    public CircleQueue(int maxSize) {
         this.maxSize = maxSize;
         elements = new int[maxSize];
-        head = tail = -1;
+        head = tail = 0;
         size = 0;
     }
 
     public boolean isEmpty() {
-        return head == tail;
+        return size == 0;
     }
 
     public boolean isFull() {
-        return tail == maxSize - 1;
+        return size == maxSize;
     }
 
     public boolean put(int i) {
         if (isFull()) {
             return false;
         }
-        elements[++tail] = i;
+        tail = (tail + 1) % maxSize;
+        elements[tail] = i;
         size++;
         return true;
     }
@@ -39,11 +40,12 @@ public class ArrayQueue {
             throw new NullPointerException("queue is empty!");
         }
         size--;
-        return elements[++head];
+        head = (head + 1) % maxSize;
+        return elements[head];
     }
 
     public int peek() {
-        return elements[head + 1];
+        return elements[(head + 1) % maxSize];
     }
 
     public void show() {
@@ -51,8 +53,8 @@ public class ArrayQueue {
             System.out.println("queue is empty!");
             return;
         }
-        for (int index = 0; index < elements.length; index++) {
-            System.out.printf("arr[%d]=%d", index, elements[index]);
+        for (int index = head; index < head + size; index++) {
+            System.out.printf("arr[%d]=%d", index % maxSize, elements[index % maxSize]);
         }
     }
 

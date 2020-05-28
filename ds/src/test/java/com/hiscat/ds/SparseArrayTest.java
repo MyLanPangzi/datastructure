@@ -1,5 +1,6 @@
 package com.hiscat.ds;
 
+import com.hiscat.ds.array.SparseArray;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;

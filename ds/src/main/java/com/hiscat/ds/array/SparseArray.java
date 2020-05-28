@@ -1,4 +1,4 @@
-package com.hiscat.ds;
+package com.hiscat.ds.array;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -78,7 +78,7 @@ public class SparseArray {
         return binaryArray;
     }
 
-    static void printSparseArray(int[][] sparseArray, String path) throws IOException {
+    public static void printSparseArray(int[][] sparseArray, String path) throws IOException {
         try (FileOutputStream fileOutputStream = new FileOutputStream(path);
              BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
              PrintStream printStream = new PrintStream(bufferedOutputStream)) {

@@ -1,5 +1,6 @@
 package com.hiscat.ds;
 
+import com.hiscat.ds.queue.ArrayQueue;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

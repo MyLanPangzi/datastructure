@@ -1,4 +1,6 @@
-package com.hiscat.ds;
+package com.hiscat.ds.list;
+
+import java.util.LinkedList;
 
 /**
  * @author hiscat
@@ -103,11 +105,11 @@ public class SingleLinkedList {
         return size == 0;
     }
 
-    public HeroNode tail() {
+    public HeroNode last() {
         return tail;
     }
 
-    public HeroNode head() {
+    public HeroNode first() {
         return head.next;
     }
 
@@ -121,6 +123,131 @@ public class SingleLinkedList {
             System.out.println(tmp);
             tmp = tmp.next;
         }
+    }
+
+    public HeroNode lastIndex(int index) {
+        if (isEmpty()) {
+            return null;
+        }
+        HeroNode tmp = head.next;
+        int i = 0;
+        while (i < index && tmp != null) {
+            i++;
+            tmp = tmp.next;
+        }
+        if (i != index) {
+            return null;
+        }
+
+        return findLastIndexNode(tmp);
+    }
+
+    private HeroNode findLastIndexNode(HeroNode tmp) {
+        HeroNode tmp2 = head.next;
+        while (tmp != null) {
+            tmp = tmp.next;
+            tmp2 = tmp2.next;
+        }
+        return tmp2;
+    }
+
+    public void reverse() {
+        if (isEmpty() || size == 1) {
+            return;
+        }
+        //from second
+        HeroNode next, cur = head.next.next;
+        head.next.next = null;
+        tail = head.next;
+        while (cur != null) {
+            next = cur.next;
+
+            cur.next = head.next;
+            head.next = cur;
+
+            cur = next;
+        }
+
+    }
+
+    public void reversePrint() {
+        if (isEmpty()) {
+            return;
+        }
+        print(head.next);
+    }
+
+    private void print(HeroNode next) {
+        if (next.next != null) {
+            print(next.next);
+        }
+        System.out.println(next);
+    }
+
+    public void reversePrint2() {
+        if (isEmpty()) {
+            return;
+        }
+        LinkedList<HeroNode> stack = new LinkedList<>();
+        HeroNode next = head.next;
+        while (next != null) {
+            stack.add(next);
+            next = next.next;
+        }
+        while (!stack.isEmpty()) {
+            System.out.println(stack.removeLast());
+        }
+    }
+
+    public HeroNode middle() {
+        if (isEmpty()) {
+            return null;
+        }
+        if (size == 1) {
+            return first();
+        }
+
+        HeroNode middle = head.next;
+        HeroNode next2 = head.next;
+        while (middle != null && next2.next != null && next2.next.next != null) {
+            middle = middle.next;
+            next2 = next2.next.next;
+        }
+        return middle;
+    }
+
+    public SingleLinkedList merge(SingleLinkedList list2) {
+        SingleLinkedList result = new SingleLinkedList();
+
+        HeroNode next1 = this.head.next;
+        HeroNode next2 = list2.head.next;
+        while (next1 != null && next2 != null) {
+            if (next1.no < next2.no) {
+                result.add(next1);
+                next1 = next1.next;
+            } else {
+                result.add(next2);
+                next2 = next2.next;
+            }
+        }
+        while (next1 != null) {
+            result.add(next1);
+            next1 = next1.next;
+        }
+        while (next2 != null) {
+            result.add(next2);
+            next2 = next2.next;
+        }
+
+        //list1，list2, head
+        //cur1=list1.first cur2=list2.first
+        //cur1>cur2
+        // true head.next=cur2  cur2=cur2.next
+        // false head.next=cur1 cur1=cur1.next
+        // cur1 != nul && cur2 !=null
+        // cur1 != null append head
+        // cur2 != null append head
+        return result;
     }
 
 
