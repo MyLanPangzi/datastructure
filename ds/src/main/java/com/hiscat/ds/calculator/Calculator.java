@@ -1,4 +1,6 @@
-package com.hiscat.ds.stack;
+package com.hiscat.ds.calculator;
+
+import com.hiscat.ds.stack.ArrayStack;
 
 /**
  * @author hiscat
@@ -21,7 +23,7 @@ public class Calculator {
             if (Character.isDigit(ch)) {
                 numberStack.push(ch - 48);
             } else if (isOperator(ch)) {
-                if (!operatorStack.isEmpty() && currentIsLowPriority(ch)) {
+                if (!operatorStack.isEmpty() && isLowPriority(ch)) {
                     calc();
                 }
                 operatorStack.push(ch);
@@ -37,7 +39,7 @@ public class Calculator {
         return operator == '*' || operator == '/' || operator == '+' || operator == '-';
     }
 
-    private boolean currentIsLowPriority(char ch) {
+    private boolean isLowPriority(char ch) {
         return getPriority(operatorStack.peek()) >= getPriority(ch);
     }
 
