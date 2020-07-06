@@ -12,6 +12,7 @@ public class Maze {
     private int targetCol;
     private int startLine;
     private int startCol;
+    private int step;
 
     public Maze(int line, int col) {
         this.line = line;
@@ -88,10 +89,20 @@ public class Maze {
         }
         //下右左上
         map[line][col] = 2;
-        if (walk(line + 1, col) || walk(line, col + 1) || walk(line, col - 1) || walk(line - 1, col)) {
+        step++;
+        if (
+                walk(line + 1, col)
+                        || walk(line, col + 1)
+                        || walk(line, col - 1)
+                        || walk(line - 1, col)
+        ) {
             return true;
         }
         map[line][col] = 3;
         return false;
+    }
+
+    public void printStep() {
+        System.out.println(step);
     }
 }

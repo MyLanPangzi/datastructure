@@ -16,7 +16,8 @@ class MazeTest {
         Maze maze = Maze.of(9, 9);
         assertTrue(maze.walk());
         maze.print();
-        maze.reset();
-        maze.print();
+//        maze.reset();
+//        maze.print();
+        maze.printStep();
     }
 }
