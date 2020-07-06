@@ -8,16 +8,15 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SelectSortTest {
+class InsertSortTest {
 
     @Test
     void sort() {
         int[] arr = {3, 2, 4, 1, 5};
-        SelectSort.sort(arr);
+        InsertSort.sort(arr);
         assertArrayEquals(arr, new int[]{1, 2, 3, 4, 5});
         System.out.println(Arrays.toString(arr));
     }
-
     @Test
     void testSort() {
         int[] arr = new int[100000];
@@ -26,7 +25,8 @@ class SelectSortTest {
             arr[i] = random.nextInt(100000);
         }
         System.out.println(LocalDateTime.now());
-        SelectSort.sort(arr);
+        InsertSort.sort(arr);
         System.out.println(LocalDateTime.now());
     }
+
 }

@@ -12,6 +12,9 @@ public class SelectSort {
                     k = j;
                 }
             }
+            if (k == i) {
+                continue;
+            }
             int tmp = arr[k];
             arr[k] = arr[i];
             arr[i] = tmp;
