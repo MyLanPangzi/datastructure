@@ -17,7 +17,6 @@ public class BubbleSort {
                     arr[j + 1] = tmp;
                 }
             }
-//            System.out.printf("第%d次, %s\n", i, Arrays.toString(arr));
             if (sorted) {
                 break;
             }
